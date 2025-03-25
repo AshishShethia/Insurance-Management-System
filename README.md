@@ -1,71 +1,90 @@
-# Insurance Management
-![developer](https://img.shields.io/badge/Developed%20By%20%3A-Sumit%20Kumar-red)
----
-## screenshots
-### Homepage
-![homepage snap](https://github.com/sumitkumar1503/insurancemanagement/blob/master/static/screenshots/homepage.png?raw=true)
-### Admin Dashboard
-![dashboard snap](https://github.com/sumitkumar1503/insurancemanagement/blob/master/static/screenshots/dashboard.png?raw=true)
-### Policy Record
-![invoice snap](https://github.com/sumitkumar1503/insurancemanagement/blob/master/static/screenshots/policyrecord.png?raw=true)
-### Policy 
-![doctor snap](https://github.com/sumitkumar1503/insurancemanagement/blob/master/static/screenshots/policy.png?raw=true)
----
-## Functions
-### Admin
-- Admin account can be created using createsuperuser command.
-- After login, admin can view/update/delete customer
-- Can view/add/update/delete policy category like Life, Health, Motor, Travel
-- Can view/add/update/delete policy
-- Can view total policy holder, approved policy holder, disapproved policy holder
-- Can approve policy, applied by customer
-- Can answer customer question
 
-### Customer
-- Create account (no approval required by admin)
-- After login, can view all policy that are added by admin.
-- If customer likes any policy, then they can apply for it.
-- When customer will apply for any policy, it will go into pending status, admin can approve it.
-- Customer can check status of his policy under history section
-- Customer can ask question from admin. 
+# Insurance Management System
 
----
+## Project Overview
 
-## HOW TO RUN THIS PROJECT
-- Install Python(3.7.6) (Dont Forget to Tick Add to Path while installing Python)
-- Open Terminal and Execute Following Commands :
-```
-python -m pip install -r requirements.txt
-```
-- Download This Project Zip Folder and Extract it
-- Move to project folder in Terminal. Then run following Commands :
-```
-py manage.py makemigrations
-py manage.py migrate
-py manage.py runserver
-```
-- Now enter following URL in Your Browser Installed On Your Pc
-```
-http://127.0.0.1:8000/
-```
+The **Insurance Management System** is a web-based application designed to manage and streamline the customer lifecycle within an insurance company. The system allows customers to sign up, apply for insurance policies, manage premium distributions, track policy histories, and submit questions to the company. It also provides a comprehensive customer dashboard and aggregates key data for both customers and the insurance company.
 
-## CHANGES REQUIRED FOR CONTACT US PAGE
-- In settins.py file, You have to give your email and password
-```
-EMAIL_HOST_USER = 'youremail@gmail.com'
-EMAIL_HOST_PASSWORD = 'your email password'
-EMAIL_RECEIVING_USER = 'youremail@gmail.com'
-```
-- Login to gmail through host email id in your browser and open following link and turn it ON
-```
-https://myaccount.google.com/lesssecureapps
-```
+## Features
+
+- **Customer Sign-Up**: Customers can register an account, set a username and password, and upload a profile photo.
+- **Policy Application**: Customers can browse available insurance policies and apply for them.
+- **Premium Distribution**: Monthly premium details, sum assurance, and policy status are calculated and displayed via stored procedures.
+- **Policy History**: Customers can view the history of all policies they have applied for.
+- **Question Management**: Customers can ask questions about policies, and view past queries and responses.
+- **Customer Dashboard**: A personalized dashboard that shows the total number of policies, premiums, and any questions asked.
+- **Data Analytics**: Views and stored procedures to aggregate and display data such as total policies, premiums, and customer statistics.
+
+## Technologies Used
+
+- **Django (Python)**: The backend framework for handling customer interactions, form handling, and user authentication.
+- **SQL**: Used for creating and managing the database, including stored procedures, views, and indexes for efficient data retrieval.
+- **HTML/CSS**: For building the user interface and ensuring a seamless experience.
+- **MySQL**: For storing all customer and policy data, with indexing and optimization techniques applied to enhance performance.
+- **Bootstrap**: For responsive web design and layout.
+
+## Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
+
+2. **Create and Activate Virtual Environment**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Required Packages**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure Database**
+   - Create a MySQL database for the project and configure the database settings in `settings.py`.
+   - Run database migrations:
+     ```bash
+     python manage.py migrate
+     ```
+
+5. **Create Superuser**
+   - To access the Django admin panel, create a superuser:
+     ```bash
+     python manage.py createsuperuser
+     ```
+
+6. **Run the Development Server**
+   ```bash
+   python manage.py runserver
+   ```
+
+7. **Access the Application**
+   - Visit `http://127.0.0.1:8000/` to access the application in your browser.
 
 
-## Disclaimer
-This project is developed for demo purpose and it's not supposed to be used in real application.
+## Database
 
-## Feedback
-Any suggestion and feedback is welcome. You can message me on facebook
-- [Contact on Facebook](https://fb.com/sumit.luv)
-- [Subscribe my Channel LazyCoder On Youtube](https://youtube.com/lazycoderonline)
+### Key Tables:
+
+- **customer**: Stores customer information (name, username, profile photo).
+- **insurance_policy**: Stores insurance policy details (policy name, premium, coverage).
+- **insurance_policyrecord**: Stores records linking customers to their policies (customer ID, policy ID).
+- **questions**: Stores questions asked by customers related to policies.
+
+### Stored Procedures and Views
+
+- **Stored Procedure (`GetPremium`)**: Retrieves premium distribution details for a customer, including policy names, premium amounts, monthly payments, and policy status.
+- **View (`customer_policy_overview`)**: Aggregates total premium amounts and total policy count for each customer.
+
+
+### Indexing
+
+To optimize query performance, indexing has been applied to important fields, including those used in the stored procedures and views. These indexes are essential for improving the retrieval speed of data like customer policy details and premium distributions.
+
+
+
+## License
+
+This project is licensed under the MIT License.
