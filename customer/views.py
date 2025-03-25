@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponseRedirect  # Add this import
 from . import forms, models
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from insurance import models as CMODEL
 from insurance import forms as CFORM  # Add this import
-from django.shortcuts import render
 from insurance.models import PolicyRecord, Policy
 
 def customerclick_view(request):
@@ -29,7 +29,7 @@ def customer_signup_view(request):
             customer.save()
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
             my_customer_group[0].user_set.add(user)
-        return HttpResponseRedirect('customerlogin')
+        return HttpResponseRedirect('customerclick')
     return render(request, 'customer/customersignup.html', context=mydict)
 
 def is_customer(user):
@@ -92,16 +92,37 @@ def question_history_view(request):
 
 from django.contrib.auth.decorators import login_required
 
+from django.db import connection
+
+from django.db import connection
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def premium_distribution(request):
-    # Get the currently logged-in customer (assuming the customer is a user or has a relation to User)
-    customer = request.user.customer  # Adjust this based on how your customer model is linked to the User model
-    
-    # Fetch only approved PolicyRecords for the logged-in customer and include the related Policy data
-    policy_records = PolicyRecord.objects.select_related('policy').filter(
-        status='approved', 
-        customer=customer  # Assuming 'customer' is the field that links the PolicyRecord to the Customer
-    )
+    # Get the currently logged-in customer
+    customer = models.Customer.objects.get(user_id=request.user.id)
+    # Call the stored procedure to fetch premium distribution
+    with connection.cursor() as cursor:
+        cursor.callproc('GetPremium', [customer.id])
+        premium_results = cursor.fetchall()
 
-    # Pass the filtered policy records to the template context
-    return render(request, 'customer/premium_distribution.html', {'policy_records': policy_records})
+    # Convert the stored procedure results into a list of dictionaries for easier template access
+    premium_data = [
+        {
+            'policy_name': row[2],
+            'sum_assurance': row[3],
+            'premium': row[4],
+            'monthly_payment': row[5],
+            'tenure': row[6],
+            'status': row[7]
+        }
+        for row in premium_results
+    ]
+
+    context = {
+        'premium_data': premium_data,
+        'customer': customer,
+    }
+
+    return render(request, 'customer/premium_distribution.html', context)
