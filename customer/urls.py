@@ -14,4 +14,6 @@ urlpatterns = [
 
     path('ask-question', views.ask_question_view,name='ask-question'),
     path('question-history', views.question_history_view,name='question-history'),
+
+    path('premium-distribution', views.premium_distribution, name='premium-distribution'),
 ]

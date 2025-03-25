@@ -37,9 +37,7 @@
         background: #663a30;
       }
   
-  
       .card {
-        
         -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
         box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
         border: 1px solid black;
@@ -68,59 +66,65 @@
       right: 0px;
     }
     </style>
-  </head>
+</head>
 
-
-  <div class="container">
+<div class="container">
     <div class="row">
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-          <div class="card-block">
-            <h6 class="m-b-20"> <a href="apply-policy" style="text-decoration: none;color:white;">Available Policy</a> </h6>
-            <h2 class="text-right"><i  class="fab fa-product-hunt f-left"></i><span>{{available_policy}}</span></h2>
-            
-          </div>
+        <!-- Available Policy Card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><a href="apply-policy" style="text-decoration: none;color:white;">Available Policy</a></h6>
+                    <h2 class="text-right"><i class="fab fa-product-hunt f-left"></i><span>{{available_policy}}</span></h2>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-          <div class="card-block">
-            <h6 class="m-b-20"><a href="history" style="text-decoration: none;color:white;">Applied Policy</a> </h6>
-            <h2 class="text-right"><i class="fab fa-product-hunt f-left"></i><span>{{applied_policy}}</span></h2>
-            
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-          <div class="card-block">
-            <h6 class="m-b-20"><a href="/" style="text-decoration: none;color:white;">Policy Categories</a></h6>
-           <h2 class="text-right"><i class="fas fa-list-alt f-left"></i><span>{{total_category}}</span></h2>
-            
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-          <div class="card-block">
-            <h6 class="m-b-20"><a href="question-history" style="text-decoration: none;color:white;">Total Question Asked</a></h6>
-            <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
-            
-          </div>
-        </div>
-      </div>
 
-      
+        <!-- Applied Policy Card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><a href="history" style="text-decoration: none;color:white;">Applied Policy</a></h6>
+                    <h2 class="text-right"><i class="fab fa-product-hunt f-left"></i><span>{{applied_policy}}</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policy Categories Card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><a href="/" style="text-decoration: none;color:white;">Policy Categories</a></h6>
+                    <h2 class="text-right"><i class="fas fa-list-alt f-left"></i><span>{{total_category}}</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Question Asked Card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><a href="question-history" style="text-decoration: none;color:white;">Total Question Asked</a></h6>
+                    <h2 class="text-right"><i class="fas fa-question-circle f-left"></i><span>{{total_question}}</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Distribution Card -->
+        <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20"><a href="premium-distribution" style="text-decoration: none;color:white;">Premium Distribution</a></h6>
+                    <h2 class="text-right"><i class="fas fa-chart-pie f-left"></i><span>{{premium_distribution}}</span></h2>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
-
+</div>
 
 <br><br><br><br><br><br><br><br><br><br>
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
 
 {% endblock content %}

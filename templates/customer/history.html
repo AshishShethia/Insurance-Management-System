@@ -55,7 +55,7 @@
       {% for t in policies %}
       <tr>
         <td> {{ forloop.counter }}</td>
-        <td> {{t.Policy}}</td>
+        <td> {{t.policy.policy_name}}</td>
 
         <td>{{t.creation_date}}</td>
         <td>{{t.status}}</td>

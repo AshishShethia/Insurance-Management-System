@@ -80,10 +80,15 @@ WSGI_APPLICATION = 'insurancemanagement.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'insurance_manange_system',   # Change this to your actual database name
+        'USER': 'root',  # Your MySQL username
+        'PASSWORD': 'root',  # Your MySQL password
+        'HOST': 'localhost',  # Change if using a remote DB
+        'PORT': '3306',  # Default MySQL port
     }
 }
+
 
 
 # Password validation
